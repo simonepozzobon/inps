@@ -1,0 +1,42 @@
+#bb-search-guid-container {
+    margin-left: -20px;
+    margin-right: -10px;
+}
+
+.bb-search-guid-title {
+    background-color: #007f86;
+}
+
+.bb-search-guid-title span {
+    padding-right: 10px;
+}
+
+.bb-search-guid-form-container {
+    margin-top: -20px;
+    padding-bottom: 20px;
+    background-color: #f0f0f0;
+    height: auto;
+}
+
+.bb-search-form-container label,
+.bb-search-subtitle {
+    padding-top: 35px;
+    font-weight: 400;
+    color: #007f86;
+    font-size: 25px;
+}
+
+.bb-guid-src-btn {
+    box-shadow: 1px 1px 2px #333, inset 2px 2px rgba(255, 255, 255, .2);
+    background-color: #007f86;
+    color: #fff;
+    font-size: 24px;
+    height: 40px;
+    padding-top: 2px;
+    margin-top: 40px;
+    width: 166px;
+}
+
+.bb-guid-src-btn:hover {
+    color: #fff;
+}

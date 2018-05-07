@@ -1,0 +1,78 @@
+#bb-single-film-container {
+    margin-left: -30px
+}
+
+.bb-single-film-title {
+    color: #000;
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    font-size: 18px;
+    width: 718px;
+    height: 52px;
+    background-color: #dcebf5
+}
+
+.bb-single-film-info {
+    margin-top: 2px;
+    padding-left: 10px;
+    height: 28px;
+    width: 718px;
+    font-size: 18px;
+    color: #000;
+    background-color: #f2f2f2
+}
+
+.bb-single-film-dirandcast {
+    text-align: justify;
+    margin-top: 17px;
+    padding-left: 10px;
+    margin-right: -20px;
+    font-size: 18px;
+    color: #9b9b9b;
+    font-weight: 300
+}
+
+.bb-italic {
+    font-style: italic
+}
+
+.bb-single-film-rep {
+    margin-left: -10px;
+    margin-top: 55px;
+    padding-top: 13px;
+    width: 505px;
+    height: 52px;
+    font-size: 18px;
+    color: #000;
+    background-color: #dcebf5
+}
+
+.bb-single-film-notes {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 300
+}
+
+.bb-single-film-add-btn {
+    margin-top: 55px;
+    box-shadow: 1px 1px 2px #333, inset 2px 2px rgba(255, 255, 255, .4);
+    height: 50px;
+    width: 200px;
+    margin-left: 5px;
+    background-color: #ee7939
+}
+
+.bb-single-film-add-btn a {
+    color: #fff;
+    font-size: 18px
+}
+
+.bb-single-film-add-btn a:hover {
+    color: #fff;
+    text-decoration: none
+}
+
+.bb-add-film-btn {
+    margin-left: -20px
+}
