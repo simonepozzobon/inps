@@ -88,6 +88,22 @@
 
 /*
  *
+ * REGISTER LOGIN
+ *
+ */
+
+.bb-keywords {
+  display: flex;
+  flex-wrap: wrap;
+
+  > .bb-keyword {
+    padding-right: $spacer;
+  }
+}
+
+
+/*
+ *
  * SIDEBAR
  *
  */

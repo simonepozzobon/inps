@@ -11452,6 +11452,24 @@ mark,
 
 /*
  *
+ * REGISTER LOGIN
+ *
+ */
+
+.bb-keywords {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.bb-keywords > .bb-keyword {
+  padding-right: 1rem;
+}
+
+/*
+ *
  * SIDEBAR
  *
  */
