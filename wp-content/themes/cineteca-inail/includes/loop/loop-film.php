@@ -180,32 +180,55 @@ function cineteca_inail_get_the_5_film_rand_loop_from_query($loop,$add){
 function cineteca_inail_get_the_film_title_loop_from_query($loop)
 {
 ?>
-	<section class="row" role="content-info">
-		<div class="bb-riepilogo-query-container">
-<?php
-	if ( $loop->have_posts() ) :
-		while ( $loop->have_posts() ) : $loop->the_post(); ?>
-			<div class="row bb-query-result-only-title-row" id="bb-q-result-<?php echo get_the_ID();?>">
-				<div class="bb-result-only-title">
-					<h2>
-						<a href="<?php the_permalink(); ?>" title="<?php echo get_the_title(); ?>">
-							<?php echo get_the_title(); ?>
-						</a>
+	<section class="row pt-3" role="content-info">
+		<div class="col-12 bb-riepilogo-query-container">
+			<?php if ( $loop->have_posts() ) : ?>
+				<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+					<?php $postinfo = cineteca_inail_get_film_info_from_id(get_the_ID()); ?>
+					<div class="row bb-query-result-row pb-5" id="bb-q-result-<?php echo get_the_ID();?>">
+						<div class="col-md-4">
+							<div class="bb-result-image-thumb">
+								<?php if( has_post_thumbnail() ): ?>
+									<a href="<?php the_permalink(); ?>">
+										<img class="img-fluid" src="<?php the_post_thumbnail_url(); ?>" />
+									</a>
+								<?php else: ?>
+									<a href="#">
+										<img class="img-fluid" alt="default thumbnail" src="<?php echo get_template_directory_uri().'/images/greythumb.png'; ?>"/>
+									</a>
+								<?php endif; ?>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="bb-result-title">
+								<h2>
+									<a href="<?php the_permalink(); ?>" title="<?php echo get_the_title(); ?>">
+										<?php echo get_the_title(); ?>
+									</a>
+								</h2>
+							</div>
+							<div class="bb-result-info">
+								<?php echo $postinfo['genere'][0]; ?> -
+								<?php echo $postinfo['anno_di_produzione'][0]; ?> -
+								<?php echo $postinfo['nazionalità'][0]; ?> -
+								<?php echo $postinfo['durata'][0]; ?>' -
+								Et&agrave; consigliata: <?php echo $postinfo['età_consigliata'][0]; ?>
+							</div>
+							<div class="bb-result-dirandcast">
+								Un film di <span class="bb-heavier"><?php echo $postinfo['regia'][0];?></span><br>
+								Con <span class="bb-heavier"><?php echo $postinfo['cast_and_credits'][0]; ?></span>
+							</div>
+						</div>
+					</div>
+				<?php endwhile; ?>
+			<?php else: ?>
+				<div class="bb-query-result-row">
+					<h2 class="bb-query-no-result">
+						<?php echo _e('Nessun risultato trovato','cineteca-inail'); ?>
 					</h2>
 				</div>
-			</div>
-	<?php endwhile; ?>
+			<?php endif; ?>
 		</div>
-<?php else:
-?>
-	<div class="bb-query-result-row">
-		<h2 class="bb-query-no-result">
-			<?php echo _e('Nessun risultato trovato','cineteca-inail'); ?>
-		</h2>
-	</div>
-<?php
-	endif;
-?>
 	</section>
 <?php
 	wp_reset_postdata();
