@@ -3,28 +3,28 @@
   Template Name: Ricerca Guidata
   Description: Template ricerca guidata
 */
-	get_header(); 
+	get_header();
 ?>
-<?php 
+<?php
 	$formitems = cineteca_inail_query_get_option_guid_search();
 
 	if( DEBUG )
 		var_dump($formitems);
 
-	if( isset($_POST['anni-studenti'])	 || isset($_POST['tematiche'])  || 
-		isset($_POST['nazionalita']) 	 || isset($_POST['genere']) 	|| 
-		isset($_POST['anno_produzione']) || isset($_POST['tipologia']) 
+	if( isset($_POST['anni-studenti'])	 || isset($_POST['tematiche'])  ||
+		isset($_POST['nazionalita']) 	 || isset($_POST['genere']) 	||
+		isset($_POST['anno_produzione']) || isset($_POST['tipologia'])
 	)
 	{
 		if(
 			$_POST['anno_produzione'] != "Seleziona il decennio di produzione"	|| $_POST['anni-studenti'] != "Seleziona l\'età"   ||
 			$_POST['nazionalita'] != "Seleziona il paese di produzione"			|| $_POST['tipologia'] != "Seleziona la tipologia" ||
-			$_POST['genere'] != "Seleziona il genere"							|| isset($_POST['tematiche'])				 	
+			$_POST['genere'] != "Seleziona il genere"							|| isset($_POST['tematiche'])
 		)
 		{
 			if( $_POST['anni-studenti'] == "Seleziona l\'età")
 				$_POST['anni-studenti'] = NULL;
-			
+
 			if( $_POST['nazionalita'] == 'Indifferente' || $_POST['nazionalita'] == 'Seleziona il paese di produzione' )
 				$_POST['nazionalita'] = NULL;
 
@@ -39,7 +39,7 @@
 
 
 			$filmresults = cineteca_inail_query_builder(
-							NULL, 
+							NULL,
 							$_POST['tipologia'],
 							$_POST['genere'],
 							$_POST['nazionalita'],
@@ -47,7 +47,7 @@
 							NULL,
 							$_POST['tematiche'],
 							$_POST['anni-studenti'],
-							$_POST['anno_produzione'] 
+							$_POST['anno_produzione']
 						);
 
 			if( DEBUG )
@@ -113,7 +113,7 @@
 
 						<div class="form-group form-inline bb-two-group">
 							<h2 class="bb-search-subtitle">I film</h2>
-							
+
 							<?php 	$nation =  $formitems['nazionalita'];	?>
 							<select class="form-control" name="nazionalita">
 								<option><?php echo _e('Seleziona il paese di produzione','cineteca-inail'); ?></option>
@@ -156,7 +156,7 @@
 			<?php get_sidebar(); ?>
 		</section>
 
-		<?php 
+		<?php
 			if( isset($filmresults) )
 				cineteca_inail_get_the_5_film_rand_loop_from_query($filmresults,true);
 

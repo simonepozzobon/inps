@@ -45,7 +45,12 @@
   padding-left: 0;
   padding-top: $spacer;
   margin-right: $spacer;
+
+  &.content-film {
+    margin-right: 0;
+  }
 }
+
 
 .bb-single-post-title {
   margin-right: 0;

@@ -11413,6 +11413,10 @@ mark,
   margin-right: 1rem;
 }
 
+#content.content-film {
+  margin-right: 0;
+}
+
 .bb-single-post-title {
   margin-right: 0;
   padding: 1rem;
