@@ -81,11 +81,11 @@ function cineteca_inail_get_the_film_loop_from_query($loop,$add)
 	wp_reset_postdata();
 }
 
-function cineteca_inail_get_the_5_film_rand_loop_from_query($loop,$add){
+function cineteca_inail_get_the_5_film_rand_loop_from_query( $loop, $add ){
 ?>
 	<section class="row" role="content-info">
-		<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 bb-query-container">
-<?php
+		<div class="col-12 bb-query-container">
+	<?php
 	$uid = cineteca_inail_generate_uid();
 	if ( $loop->have_posts() ) :
 
@@ -115,17 +115,21 @@ function cineteca_inail_get_the_5_film_rand_loop_from_query($loop,$add){
 			}
 		?>
 			<?php $postinfo = cineteca_inail_get_film_info_from_id(get_the_ID()); ?>
-			<div class="row bb-query-result-row" id="bb-q-result-<?php echo get_the_ID();?>">
-				<div class="col-sm-1 col-md-1 col-lg-1 bb-result-image">
+			<div class="row bb-query-result-row pb-5" id="bb-q-result-<?php echo get_the_ID();?>">
+				<div class="col-md-4">
 					<div class="bb-result-image-thumb">
-					<?php if( has_post_thumbnail() ): ?>
-						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(array(132,98)); ?></a>
-					<?php else: ?>
-						<a href="#"><img alt="default thumbnail" src="<?php echo get_template_directory_uri().'/images/greythumb.png'; ?>"/></a>
-					<?php endif; ?>
+						<?php if( has_post_thumbnail() ): ?>
+							<a href="<?php the_permalink(); ?>">
+								<img class="img-fluid" src="<?php the_post_thumbnail_url(); ?>" />
+							</a>
+						<?php else: ?>
+							<a href="#">
+								<img class="img-fluid" alt="default thumbnail" src="<?php echo get_template_directory_uri().'/images/greythumb.png'; ?>"/>
+							</a>
+						<?php endif; ?>
 					</div>
 				</div>
-				<div class="col-sm-9 col-md-9 col-lg-9 bb-result-content-info">
+				<div class="col-md-8">
 					<div class="bb-result-title">
 						<h2>
 							<a href="<?php the_permalink(); ?>" title="<?php echo get_the_title(); ?>">
@@ -140,16 +144,21 @@ function cineteca_inail_get_the_5_film_rand_loop_from_query($loop,$add){
 						<?php echo $postinfo['durata'][0]; ?>' -
 						Et&agrave; consigliata: <?php echo $postinfo['età_consigliata'][0]; ?>
 					</div>
-
 					<div class="bb-result-dirandcast">
 						Un film di <span class="bb-heavier"><?php echo $postinfo['regia'][0];?></span><br>
-						Con <span class="bb-heavier"><?php echo $postinfo['cast_and_credits'][0]; ?></span>.
+						Con <span class="bb-heavier"><?php echo $postinfo['cast_and_credits'][0]; ?></span>
 					</div>
-					<?php if($add): ?>
-					<span class="btn bb-add-btn"><a class="btn" onclick="cineteca_inail_addFilmToRassegna(<?php echo get_the_ID();?>,<?php echo $uid;?>)">Aggiungi alla rassegna</a></span>
-					<?php else: ?>
-					<span class="btn bb-remove-btn"><a class="btn" onclick="cineteca_inail_removeFilmFromRassegna(<?php echo get_the_ID();?>,<?php echo $uid;?>)">Rimuovi</a></span>
-					<?php endif; ?>
+					<div class="buttons pt-3">
+						<?php if($add): ?>
+							<div class="bb-add-btn">
+								<a class="btn btn-light" onclick="cineteca_inail_addFilmToRassegna(<?php echo get_the_ID();?>,<?php echo $uid;?>)">Aggiungi alla rassegna</a>
+							</div>
+						<?php else: ?>
+							<div class="bb-remove-btn">
+								<a class="btn btn-danger text-white" onclick="cineteca_inail_removeFilmFromRassegna(<?php echo get_the_ID();?>,<?php echo $uid;?>)">Rimuovi</a>
+							</div>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		<?php endwhile; ?>
@@ -162,15 +171,15 @@ function cineteca_inail_get_the_5_film_rand_loop_from_query($loop,$add){
 			</div>
 		<?php endif;
 	else:
-?>
+	?>
 	<div class="bb-query-result-row">
 		<h2 class="bb-query-no-result">
 			<?php echo _e('Nessun risultato trovato','cineteca-inail'); ?>
 		</h2>
 	</div>
-<?php
+	<?php
 	endif;
-?>
+	?>
 	</section>
 
 <?php

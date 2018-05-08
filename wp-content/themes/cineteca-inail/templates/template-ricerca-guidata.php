@@ -67,106 +67,147 @@
 	if( isset($filmresults) )
 		wp_enqueue_style('cineteca.query.results');
 ?>
-<main class="container bb-main-wrapper">
-		<section class="row" role="content-info">
-			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 bb-search bb-search-guid" id="bb-search-guid-container">
-				<div class="bb-search-guid-title bb-search-title">
-					<span>
-						<img src="<?php echo get_template_directory_uri().'/images/magnifier.png';?>" alt="lente di ingrandimento"/>
-					</span>
-					<h1><?php echo get_the_title() ?></h1>
+
+<main role="main" class="container pb-5">
+	<div class="row">
+		<div class="col-md-8">
+			<!-- Parte Centrale -->
+
+				<div id="post-<?php the_ID(); ?>" class="row">
+					<div class="col">
+						<div class="row bb-home-sect-title">
+							<h1><?php the_title(); ?></h1>
+						</div>
+						<div class="row">
+							<div id="content" class="col content">
+
+								<form class="bb-search-form-container bb-search-guid-form-container" action="#" method="post">
+
+									<div class="row">
+										<div class="col-12">
+											<?php	$eta = $formitems["anni_studenti"]; ?>
+											<h2><?php echo _e('Quanti anni hanno i tuoi studenti?','cineteca-inail'); ?></h2>
+											<div class="form-group">
+												<select class="form-control" name="anni-studenti" value="Seleziona l'et&agrave;">
+													<option><?php echo _e('Seleziona l\'et&agrave;','cineteca-inail' ); ?></option>
+												<?php foreach( $eta as $etaitem ){ ?>
+													<option <?php if( isset($default_age) && $default_age == $etaitem ) echo "selected"; ?> ><?php echo $etaitem; ?></option>
+												<?php } ?>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-12">
+											<h2 class="bb-search-subtitle">Quali tematiche ti interessano?</h2>
+											<div class="form-group">
+												<?php $keywords = $formitems["tematiche"]; ?>
+												<div class="bb-keywords">
+													<?php $i = 0;
+														foreach( $keywords as $keyword ) { ?>
+															<div class="bb-keyword">
+																<input type="checkbox" id="inlineCheckbox<?php echo $i; ?>" name="tematiche[]" value="<?php echo $keyword; ?>">
+																<label for="inlineCheckbox<?php echo $i; ?>" class="checkbox-inline bb-sublbl">
+																	<?php echo $keyword; ?>
+																</label>
+															</div>
+													<?php $i++;
+														}
+													?>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-12">
+											<h2 class="bb-search-subtitle">I film</h2>
+
+											<div class="row">
+												<div class="form-group col-md-6">
+													<div class="form-group">
+														<label for="nazionalita">Nazionalità</label>
+														<?php 	$nation =  $formitems['nazionalita'];	?>
+														<select class="form-control" name="nazionalita">
+															<option><?php echo _e('Seleziona il paese di produzione','cineteca-inail'); ?></option>
+															<?php foreach( $nation as $nationitem ) { ?>
+																<option <?php if( isset($default_country) && $default_country == $nationitem ) echo "selected";?> ><?php echo $nationitem; ?></option>
+															<?php } ?>
+														</select>
+													</div>
+												</div>
+												<div class="form-group col-md-6">
+													<label for="anno_produzione">Anno di produzione</label>
+													<?php 	$decade = $formitems['anno_produzione'];	?>
+													<select class="form-control" name="anno_produzione">
+														<option><?php echo _e('Seleziona il decennio di produzione','cineteca-inail'); ?></option>
+														<?php foreach( $decade as $decadeitem ) { ?>
+															<option <?php if( isset($default_decade) && $default_decade == $decadeitem ) echo "selected";?> ><?php echo $decadeitem; ?></option>
+														<?php } ?>
+													</select>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label for="tipologia">Tipologia</label>
+													<?php 	$tipology = $formitems['tipologia']; ?>
+													<select class="form-control" name="tipologia" value="Seleziona l'et&agrave;">
+														<option><?php echo _e('Seleziona la tipologia','cineteca-inail'); ?></option>
+														<?php foreach( $tipology as $tipologyitem ) { ?>
+															<option <?php if( isset($default_type) && $default_type == $tipologyitem ) echo "selected";?> ><?php echo $tipologyitem; ?></option>
+														<?php } ?>
+													</select>
+												</div>
+												<div class="form-group col-md-6">
+													<label for="genere">Genere</label>
+													<?php 	$genre = $formitems['genere'];	?>
+													<select class="form-control" name="genere" value="Seleziona l'et&agrave;">
+														<option><?php echo _e('Seleziona il genere','cineteca-inail'); ?></option>
+														<?php foreach( $genre as $genreitem ) { ?>
+															<option <?php if( isset($default_genre) && $default_genre == $genreitem ) echo "selected";?> ><?php echo $genreitem; ?></option>
+														<?php } ?>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="buttons">
+										<input class="btn btn-dark bb-guid-src-btn" type="submit" value="Cerca"/>
+									</div>
+
+								</form>
+
+								<div class="results pt-5">
+									<?php
+										if( isset($filmresults) )
+											cineteca_inail_get_the_5_film_rand_loop_from_query( $filmresults, true );
+
+										if( DEBUG && isset($filmresults) )
+										{
+											echo '<br><br><hr><br><br>';
+											var_dump($filmresults);
+											echo '<hr>';
+										}
+									?>
+								</div>
+
+							</div>
+						</div>
+					</div>
 				</div>
 
-				<div class="bb-search-form-container bb-search-guid-form-container">
-					<form method="POST" action="#">
-
-						<?php	$eta = $formitems["anni_studenti"]; ?>
-						<div class="form-group">
-							<h2>
-								<label for="anni-studenti">
-									<?php echo _e('Quanti anni hanno i tuoi studenti?','cineteca-inail'); ?>
-								</label>
-							</h2>
-							<select class="form-control" name="anni-studenti" value="Seleziona l'et&agrave;">
-								<option><?php echo _e('Seleziona l\'et&agrave;','cineteca-inail' ); ?></option>
-							<?php foreach( $eta as $etaitem ){ ?>
-								<option <?php if( isset($default_age) && $default_age == $etaitem ) echo "selected"; ?> ><?php echo $etaitem; ?></option>
-							<?php } ?>
-							</select>
-						</div>
-
-						<div class="form-group">
-							<h2 class="bb-search-subtitle">Quali tematiche ti interessano?</h2>
-							<br>
-							<?php $keywords = $formitems["tematiche"]; ?>
-							<?php $i = 0;
-								foreach( $keywords as $keyword ){ ?>
-								<label for="inlineCheckbox<?php echo $i; ?>" class="checkbox-inline bb-sublbl">
-									<?php echo $keyword; ?>
-								</label>
-								<input type="checkbox" id="inlineCheckbox<?php echo $i; ?>" name="tematiche[]" value="<?php echo $keyword; ?>">
-								<span class="bb-white-space"></span>
-							<?php $i++;
-								}
-							?>
-						</div>
-
-						<div class="form-group form-inline bb-two-group">
-							<h2 class="bb-search-subtitle">I film</h2>
-
-							<?php 	$nation =  $formitems['nazionalita'];	?>
-							<select class="form-control" name="nazionalita">
-								<option><?php echo _e('Seleziona il paese di produzione','cineteca-inail'); ?></option>
-							<?php foreach( $nation as $nationitem ) { ?>
-								<option <?php if( isset($default_country) && $default_country == $nationitem ) echo "selected";?> ><?php echo $nationitem; ?></option>
-							<?php } ?>
-							</select>
-
-							<?php 	$decade = $formitems['anno_produzione'];	?>
-							<select class="form-control" name="anno_produzione">
-								<option><?php echo _e('Seleziona il decennio di produzione','cineteca-inail'); ?></option>
-							<?php foreach( $decade as $decadeitem ) { ?>
-								<option <?php if( isset($default_decade) && $default_decade == $decadeitem ) echo "selected";?> ><?php echo $decadeitem; ?></option>
-							<?php } ?>
-							</select>
-						</div>
-						<div class="form-group form-inline bb-two-group">
-							<?php 	$tipology = $formitems['tipologia']; ?>
-							<select class="form-control" name="tipologia" value="Seleziona l'et&agrave;">
-								<option><?php echo _e('Seleziona la tipologia','cineteca-inail'); ?></option>
-							<?php foreach( $tipology as $tipologyitem ) { ?>
-								<option <?php if( isset($default_type) && $default_type == $tipologyitem ) echo "selected";?> ><?php echo $tipologyitem; ?></option>
-							<?php } ?>
-							</select>
-
-							<?php 	$genre = $formitems['genere'];	?>
-							<select class="form-control" name="genere" value="Seleziona l'et&agrave;">
-								<option><?php echo _e('Seleziona il genere','cineteca-inail'); ?></option>
-							<?php foreach( $genre as $genreitem ) { ?>
-								<option <?php if( isset($default_genre) && $default_genre == $genreitem ) echo "selected";?> ><?php echo $genreitem; ?></option>
-							<?php } ?>
-							</select>
-						</div>
-
-						<input class="btn bb-guid-src-btn" type="submit" value="Cerca"/>
-					</form>
+		</div>
+		<div class="col-md-4">
+			<!-- Sidebar -->
+			<div class="row">
+				<div class="col-12">
+					<?php get_sidebar(); ?>
 				</div>
-
 			</div>
-			<?php get_sidebar(); ?>
-		</section>
-
-		<?php
-			if( isset($filmresults) )
-				cineteca_inail_get_the_5_film_rand_loop_from_query($filmresults,true);
-
-			if( DEBUG && isset($filmresults) )
-			{
-				echo '<br><br><hr><br><br>';
-				var_dump($filmresults);
-				echo '<hr>';
-			}
-		?>
-
+		</div>
+	</div>
 </main>
 <?php get_footer(); ?>
