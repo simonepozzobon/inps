@@ -1,0 +1,136 @@
+.bb-home-sect-title {
+  margin-right: 0;
+  padding: $spacer;
+  background-color: $light-yellow;
+
+  > h1 {
+    margin-bottom: 0;
+  }
+}
+
+.bb-posts-home-single-sect-title {
+  margin-top: $spacer;
+  margin-right: 0;
+  margin-bottom: $spacer / 2;
+  padding: $spacer / 2;
+  font-weight: bold;
+}
+
+.bb-posts-home-single-title {
+  background-color: $light-yellow;
+  padding: $spacer / 2;
+  margin-top: $spacer / 2;
+  margin-right: 0;
+  margin-bottom: $spacer / 2;
+
+  > a {
+    &:active, &:visited, &:link {
+      color: $black;
+    }
+  }
+}
+
+.bb-posts-home-single-excerpt {
+  width: 100%;
+}
+
+/*
+ *
+ * SIDEBAR
+ *
+ */
+
+.bb-home-sidebar-post-title {
+  margin-right: 0;
+  margin-bottom: $spacer / 2;
+  padding: $spacer / 2;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  > a {
+    color: $black;
+
+    &:active, &:link, &:visited {
+      color: $black;
+    }
+  }
+}
+
+.bb-lil-block {
+  padding: $spacer;
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacer;
+
+  > .icon {
+    padding-right: $spacer;
+
+    .search-icon .icon,
+    .lock-icon .icon {
+      fill: $white;
+    }
+  }
+}
+
+
+/*
+ *
+ * FOOTER
+ *
+ */
+
+#footer {
+  display: flex;
+  flex-direction: column;
+
+  > .bb-footer-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: $spacer;
+  }
+
+  > .bb-footer-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: $spacer;
+
+    > .bb-footer-link {
+      margin: ($spacer / 2) 0;
+
+      > a:active, a:link, a:visited {
+        color: $black;
+      }
+    }
+  }
+}
+
+#subfooter {
+  text-align: center;
+  padding-bottom: $spacer * 2;
+}
+
+@include media-breakpoint-up('md') {
+
+  #footer {
+    flex-direction: row;
+
+    > .bb-footer-logos {
+      padding: $spacer;
+      align-items: flex-start;
+    }
+
+    > .bb-footer-links {
+      padding-left: $spacer * 2;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+
+      > .bb-footer-link {
+        margin: 0 $spacer;
+      }
+    }
+  }
+}

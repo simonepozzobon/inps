@@ -17,3 +17,4 @@ wp-content/plugins/hello.php
 .htaccess
 
 /node_modules
+/dev/css/_bootstrap

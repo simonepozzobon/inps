@@ -1,5 +1,5 @@
 <?php
-	define( 'VERSION',   '1.0' );
+	define( 'VERSION',   '2.0' );
 	define( 'THEME_URL', get_template_directory_uri().'/' );
 	define( 'JS_DIR',    THEME_URL.'js/' );
 	define( 'CSS_DIR',   THEME_URL.'css/' );
