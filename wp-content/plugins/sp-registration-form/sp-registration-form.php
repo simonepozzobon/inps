@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: My registration form
+  Plugin Name: Sp Registration Form
   Plugin URI: http://simonepozzobon.com
   Description: Custom Registration Form
   Version: 1.0
