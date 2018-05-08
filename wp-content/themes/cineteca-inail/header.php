@@ -21,8 +21,7 @@
 <?php global $bodyclass; ?>
 <body class="container "<?php body_class($bodyclass); ?>>
 
-<header class="row">
-
+<header class="row pb-3">
 	<?php
 		$args = array(
 			'order'					 => 'ASC',
@@ -58,7 +57,7 @@
 		</nav>
 	</div>
 
-	<section role="content-info" class="col-12 bb-heading-img">
+	<!-- <section role="content-info" class="col-12 bb-heading-img">
 		<div class="row text-center pt-4">
 			<div class="col-md-5 bb-logos">
 				<img alt="logo Inail" src="<?php echo get_template_directory_uri().'/images/InailLogo.png';?>" class="text-center"/>
@@ -70,5 +69,5 @@
 				<img alt="logo Cineteca Milano" src="<?php echo get_template_directory_uri().'/images/CinetecaLogo.png';?>"/>
 			</div>
 		</div>
-	</section>
+	</section> -->
 </header>

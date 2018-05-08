@@ -34,6 +34,38 @@
   width: 100%;
 }
 
+
+/*
+ *
+ * PAGE & POST
+ *
+ */
+
+#content {
+  padding-left: 0;
+  padding-top: $spacer;
+  margin-right: $spacer;
+}
+
+.bb-single-post-title {
+  margin-right: 0;
+  padding: $spacer;
+  background-color: $light-yellow;
+
+  > h1 {
+    margin-bottom: 0;
+  }
+}
+
+.bb-single-post-image {
+  margin-right: 0;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 /*
  *
  * SIDEBAR
@@ -66,8 +98,22 @@
     padding-right: $spacer;
 
     .search-icon .icon,
+    .help-search .icon,
+    .cine-icon .cine .icon,
     .lock-icon .icon {
       fill: $white;
+    }
+
+    &.icon {
+      margin-bottom: auto;
+    }
+  }
+
+  > .link {
+    color: $white;
+
+    > .bb-btn {
+      width: 100%;
     }
   }
 }

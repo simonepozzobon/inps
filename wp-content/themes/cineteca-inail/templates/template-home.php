@@ -9,12 +9,12 @@
 		<div class="row">
 			<div class="col-md-8">
 				<!-- Parte Centrale -->
-				<div class="row pt-3">
+				<!-- <div class="row pt-3">
 					<div class="col">
 						<?php if ( function_exists( 'easingslider' ) ) { easingslider( 99 ); } ?>
 					</div>
-				</div>
-				<div class="row pt-3">
+				</div> -->
+				<div class="row">
 					<div class="col">
 						<div class="row bb-home-sect-title">
 							<h1><?php _e('News ed eventi','cineteca-inail'); ?></h1>

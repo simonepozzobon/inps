@@ -1,36 +1,51 @@
-<?php 
-/*
- * Single template for posts
- */
-	get_header(); 
-?>
-<main class="container bb-main-wrapper">
-	<section class="row" role="content-info">
-		<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 bb-single-post" id="bb-single-post-container">
-			
-		<?php while ( have_posts() ) : the_post(); ?>
-		
-			<div class="bb-single-post-image">
-			<?php if( has_post_thumbnail() ): ?>
-				<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('cineteca-inail-locandina'); ?></a>
-			<?php else: ?>
-				<a href="#"><img width="720" height="400" alt="default thumbnail" src="<?php echo get_template_directory_uri().'/images/greythumb.png'; ?>"/></a>
-			<?php endif; ?>
-			</div>
+<?php	get_header(); ?>
+<main role="main" class="container pb-5">
+	<div class="row">
+		<div class="col-md-8">
+			<!-- Parte Centrale -->
+			<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-			<div class="bb-single-post-title">
-				<?php echo get_the_title(); ?>
-			</div>
-			
-			<div class="bb-single-post-content">
-				<?php echo the_content(); ?>
-			</div>	
+				<div id="post-<?php the_ID(); ?>" class="row">
+					<div class="col">
+						<div class="row bb-single-post-title">
+							<h1><?php the_title(); ?></h1>
+						</div>
+						<div class="row bb-single-post-image pt-3">
+							<?php if( has_post_thumbnail() ): ?>
+								<img src="<?php the_post_thumbnail_url('cineteca-inail-locandina'); ?>" />
+							<?php else: ?>
+								<a href="#">
+									<img class="img-fluid" width="720" height="400" alt="default thumbnail" src="<?php echo get_template_directory_uri().'/images/greythumb.png'; ?>"/>
+								</a>
+							<?php endif; ?>
+						</div>
+						<div class="row">
+							<div id="content" class="col content">
+								<?php the_content(); ?>
+							</div>
+						</div>
+					</div>
+				</div>
 
 			<?php endwhile; ?>
+			<?php else: ?>
+				<div class="row">
+					<div class="col">
+						<div class="row bb-home-sect-title">
+							<h2><?php _e( '404 Pagina non trovata', 'cineteca-inail' ); ?></h2>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
-		<?php get_sidebar(); ?>
-	</section>
+		<div class="col-md-4">
+			<!-- Sidebar -->
+			<div class="row">
+				<div class="col-12">
+					<?php get_sidebar(); ?>
+				</div>
+			</div>
+		</div>
+	</div>
 </main>
 <?php get_footer(); ?>
-
-
