@@ -66,6 +66,26 @@
   }
 }
 
+
+/*
+ *
+ * REGISTER LOGIN
+ *
+ */
+
+.bb-register-login-container {
+  margin-right: 0;
+
+  > .bb-register {
+    border-right: 2px solid $white;
+  }
+
+  > .bb-login {
+    border-left: 2px solid $white;
+  }
+}
+
+
 /*
  *
  * SIDEBAR

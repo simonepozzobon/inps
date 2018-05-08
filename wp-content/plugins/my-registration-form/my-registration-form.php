@@ -1,11 +1,11 @@
 <?php
 /*
   Plugin Name: My registration form
-  Plugin URI: http://bestbugstudio.com
-  Description: A simple registration form 
+  Plugin URI: http://simonepozzobon.com
+  Description: Custom Registration Form
   Version: 1.0
-  Author: Federico Maggi
-  Author URI: http://federicomaggi.me
+  Author: Simone Pozzobon
+  Author URI: http://simonepozzobon.com
  */
 function mrf_registration_form( &$fields, &$errors )
 {
@@ -31,12 +31,6 @@ function mrf_registration_form( &$fields, &$errors )
 	mrf_sanitize_fields($fields);
 	mrf_display_form($fields, $errors, $regok);
 }
-
-function mrf_enqueue_style()
-{
-	wp_enqueue_style('my-registration-form', plugins_url('css/my-registration-form.min.css', __FILE__));
-}
-add_action('wp_enqueue_scripts', 'mrf_enqueue_style');
 
 function mrf_get_form_fields()
 {
@@ -70,50 +64,66 @@ function mrf_sanitize_fields( &$fields )
 }
 
 function mrf_display_form( $fields = array(), $errors = null, $regok = false )
-{  
+{
 	if( is_wp_error($errors) && count($errors->get_error_messages()) > 0 )
 	{
-?>
-		<ul class="list-unstyled mrf-reg-error-list">
-		<?php foreach( $errors->get_error_messages() as $key => $val ) ?>
-			<li class="mfr-reg-error-item"> <?php echo $val; ?> </li>	
-		</ul>
-<?php
-	}
+	?>
+			<ul class="list-unstyled mrf-reg-error-list">
+			<?php foreach( $errors->get_error_messages() as $key => $val ) ?>
+				<li class="mfr-reg-error-item text-danger">Errore: <?php echo $val; ?> </li>
+			</ul>
+	<?php
+		}
 
-	if( $regok ):?>
-	<p class="mfr-reg-success">Registrazione effettuata</p>
-<?php endif; ?>
+		if( $regok ):?>
+			<p class="mfr-reg-success text-success">Registrazione effettuata</p>
+		<?php endif; ?>
 
-	<form action="<?php $_SERVER['REQUEST_URI'] ?>" method="post">
-		
-		<label class="mrf-registration-form-label" for="firstname">Nome</label>
-		<input type="text" class="form-control" name="first_name" value="<?php echo (isset($fields['first_name']) ? $fields['first_name'] : '') ?>">
-		
-		<label class="mrf-registration-form-label" for="last_name">Cognome</label>
-		<input type="text" class="form-control" name="last_name" value="<?php echo (isset($fields['last_name']) ? $fields['last_name'] : '') ?>">
+		<form action="<?php $_SERVER['REQUEST_URI'] ?>" method="post">
 
-		<label class="mrf-registration-form-label" for="profession">Ambito lavorativo/professione</label>
-		<input type="text" class="form-control" name="profession" value="<?php echo (isset($fields['profession']) ? $fields['profession'] : '') ?>">
+			<div class="form-group">
+				<label class="mrf-registration-form-label" for="firstname">Nome</label>
+				<input type="text" class="form-control" id="firstname" name="first_name" value="<?php echo (isset($fields['first_name']) ? $fields['first_name'] : '') ?>">
+			</div>
 
-		<label class="mrf-registration-form-label" for="email">Indirizzo Email</label>
-		<input type="text" class="form-control" name="user_email" value="<?php echo (isset($fields['user_email']) ? $fields['user_email'] : '') ?>">
+			<div class="form-group">
+				<label class="mrf-registration-form-label" for="last_name">Cognome</label>
+				<input type="text" class="form-control" name="last_name" value="<?php echo (isset($fields['last_name']) ? $fields['last_name'] : '') ?>">
+			</div>
 
-		<label class="mrf-registration-form-label" for="user_pass">Password</label>
-		<input type="password" class="form-control" name="user_pass">
-		
-		<label class="mrf-registration-form-label" for="user_pass">Conferma password</label>
-		<input type="password" class="form-control" name="user_pass_confirm">
-		
-		<label class="mrf-registration-form-label" for="user_login">Scegliere nome utente</label>
-		<input type="text" class="form-control" name="user_login" value="<?php echo (isset($fields['user_login']) ? $fields['user_login'] : '') ?>">
+			<div class="form-group">
+				<label class="mrf-registration-form-label" for="profession">Ambito lavorativo/professione</label>
+				<input type="text" class="form-control" name="profession" value="<?php echo (isset($fields['profession']) ? $fields['profession'] : '') ?>">
+			</div>
 
-		<br>
-		<div class="mrf-accept">Accetto i <a href="<?php echo get_the_permalink(122);?>" title="termini e condizioni">Termini</a> del sito di<br>LOSPETTACOLODELLASICUREZZA</div>
-		<br>
+			<div class="form-group">
+				<label class="mrf-registration-form-label" for="email">Indirizzo Email</label>
+				<input type="text" class="form-control" name="user_email" value="<?php echo (isset($fields['user_email']) ? $fields['user_email'] : '') ?>">
+			</div>
 
-		<input type="submit" class="btn mrf-register-btn" name="submit" value="Continua">
-	</form>
+			<div class="form-group">
+				<label class="mrf-registration-form-label" for="user_pass">Password</label>
+				<input type="password" class="form-control" name="user_pass">
+			</div>
+
+			<div class="form-group">
+				<label class="mrf-registration-form-label" for="user_pass">Conferma password</label>
+				<input type="password" class="form-control" name="user_pass_confirm">
+			</div>
+
+			<div class="form-group">
+				<label class="mrf-registration-form-label" for="user_login">Scegliere nome utente</label>
+				<input type="text" class="form-control" name="user_login" value="<?php echo (isset($fields['user_login']) ? $fields['user_login'] : '') ?>">
+			</div>
+
+			<br>
+			<div class="mrf-accept">Accetto i <a href="<?php echo get_the_permalink(122);?>" title="termini e condizioni">Termini</a> del sito di<br>LOSPETTACOLODELLASICUREZZA</div>
+			<br>
+
+			<div class="btn-group pb-5 w-100">
+				<input type="submit" class="btn mrf-register-btn btn-dark btn-block" name="submit" value="Continua">
+			</div>
+		</form>
 <?php
 }
 
@@ -124,11 +134,11 @@ function mrf_validate_fields( &$fields, &$errors )
 
 	if( empty($fields['user_login']) || empty($fields['user_pass']) || empty($fields['user_email']) )
 		$errors->add('field', 'Compilare i campi obbligatori');
-	
+
 
 	if( strlen($fields['user_login']) < 4 )
 		$errors->add('username_length', 'Username troppo corto, almeno 5 caratteri');
-	
+
 
 	if( username_exists($fields['user_login']) )
 	$errors->add('user_name', 'Lo username scelto esiste già');
@@ -138,7 +148,7 @@ function mrf_validate_fields( &$fields, &$errors )
 
 	if( strlen($fields['user_pass']) < 5 )
 		$errors->add('user_pass', 'La password deve contenere almeno 5 caratteri');
-	
+
 	if( $fields['user_pass'] != $fields['user_pass_confirm'] )
 		$errors->add('wrong_pass', 'Le due password non corrispondono');
 
@@ -160,9 +170,9 @@ function mrf_validate_fields( &$fields, &$errors )
 function mrf_shortcode() {
   $fields = array();
   $errors = new WP_Error();
-  
+
   ob_start();
-  mrf_registration_form($fields, $errors);
+  mrf_registration_form( $fields, $errors );
   return ob_get_clean();
 }
-add_shortcode('my_registration_form', 'mrf_shortcode');
+add_shortcode( 'my_registration_form', 'mrf_shortcode' );
