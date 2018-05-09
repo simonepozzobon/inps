@@ -30,6 +30,11 @@ function cineteca_inail_sendfilmdatatostaff(){
 
     jsonmessage = JSON.stringify(filmarray);
 
+    // Debug
+    var data = { action:'send_film', 'message':textareacontent, 'id_list':jsonmessage }
+    console.log(data);
+    console.log(bb_ajax_handler)
+
     $.ajax({
         url: bb_ajax_handler.ajaxurl,
         data: { action:'send_film', 'message':textareacontent, 'id_list':jsonmessage },
@@ -84,30 +89,32 @@ function cineteca_inail_sendfilmdatatostaff(){
 
             modalFooter.innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>';
 
-            modalContent.appendChild(modalHeader);
-            modalContent.appendChild(modalBody);
+            modalContent.appenChild(modalHeader);
+            modalContent.appenChild(modalBody);
             modalContent.appendChild(modalFooter);
             modalDialog.appendChild(modalContent);
             modal.appendChild(modalDialog);
 
             document.body.appendChild(modal);
-            $('#rispostaAJAX').modal('show');
 
-            $('#rispostaAJAX').on('hidden.bs.modal', function(e) {
-                $(this).remove();
-                cineteca_inail_resetRassegna();
-            });
+            // var popup = document.createElement('div');
+            // popup.className = 'bb-popup';
+            //
+            // var cancel = document.createElement('div');
+            // cancel.className = 'bb-popup-cancel';
+            // cancel.innerHTML = 'Chiudi  <span id="bb-popup-cancel-ico">X</span>';
+            // cancel.onclick = function (e) { popup.parentNode.removeChild(popup) };
+            //
+            // popup.appendChild(cancel);
+            //
+            // var message = document.createElement('span');
+            // message.innerHTML = '<div class="bb-popup-text">'+response.message+'</div>';
+            // popup.appendChild(message);
+            //
+            // document.body.appendChild(popup);
         },
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
         },
     });
-}
-
-function cineteca_inail_resetRassegna() {
-    $('#bb-riepilogo-textarea').val('');
-    var filmarray = cineteca_inail_getFilmInRassegna(bb_ajax_handler.userid);
-    for (var i = 0; i < filmarray.length; i++) {
-        cineteca_inail_removeFilmFromRassegna(filmarray[i], bb_ajax_handler.userid);
-    }
 }

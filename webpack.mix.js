@@ -21,12 +21,27 @@ mix
         jquery: ['$', 'jQuery', 'jquery'],
         tether: ['Tether'],
     })
+
+    .js('dev/js/riepilogo', 'dist/js')
+
     .sass('dev/css/app.scss', 'dist/css/inps.css')
     .combine(['dist/js/manifest.js', 'dist/js/vendor.js', 'dist/js/app.js'], 'dist/js/inps.js')
+
     .minify('dist/js/inps.js')
-    .minify('dist/css/inps.css')
+    .minify('dist/js/riepilogo.js')
+
+    .copy('dist/js/manifest.js', 'wp-content/themes/cineteca-inail/js')
+    .copy('dist/js/vendor.js', 'wp-content/themes/cineteca-inail/js')
+    .copy('dist/js/app.js', 'wp-content/themes/cineteca-inail/js')
     .copy('dist/js/inps.min.js', 'wp-content/themes/cineteca-inail/js')
+    .copy('dist/js/riepilogo.min.js', 'wp-content/themes/cineteca-inail/js')
+
+
+    .minify('dist/css/inps.css')
+
     .copy('dist/css/inps.min.css', 'wp-content/themes/cineteca-inail/css')
+
+
     .browserSync({
         proxy: 'http://inps.test',
         browser: 'google chrome',

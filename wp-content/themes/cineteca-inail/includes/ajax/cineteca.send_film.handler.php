@@ -1,12 +1,12 @@
 <?php
-	
+
 	function cineteca_inail_ajax_send_film(){
 
-		if( isset($_POST['message']) )
-		{
+		// if( isset($_POST['message']) )
+		if( true ) {
 			$ids = array();
 			$ids = json_decode(str_replace ('\"','"', $_POST['id_list']),false);
-			
+
 			if( !empty($ids) )
 			{
 				global $current_user;
@@ -42,17 +42,22 @@
 				$usersent  = mail( $usermail, 'La tua rassegna è stata creata', $usermsg, $hdrFROM.$hdrTOforuser.$hdrHTML );
 
 				if( !$adminsent && !$usersent )
-					die( json_encode( array( 'status'=> 'ko', 'message' => 'Non &egrave; stato possibile inviare la mail<br>Riprova pi&ugrave; tardi') ) );
+					die( json_encode( array('status'=> 'ko', 'message' => 'Non &egrave; stato possibile inviare la mail<br>Riprova pi&ugrave; tardi') ) );
 
 				if( DEBUG )
-					die( json_encode( array( 'status' => 'ok', 'message' => get_post(106)->post_content, 'admin_mail' => $adminmail, 'user_mail' => $usermail, 'sent' => $adminsent ) ) );
+					die( json_encode( array(
+							'status' => 'ok',
+							'message' => get_post(106)->post_content,
+							'admin_mail' => $adminmail,
+							'user_mail' => $usermail,
+							'sent' => $adminsent
+						) ) );
 
 			    die( json_encode( array( 'status' => 'ok', 'message' => get_post(106)->post_content ) ) );
 
-			}else
+			} else
 				die( json_encode( array( 'status' => 'ko', 'message' => 'Nessun film selezionato', 'given_id' => $ids ) ) );
 		}
 	}
 
 	add_action('wp_ajax_send_film', 'cineteca_inail_ajax_send_film');
-

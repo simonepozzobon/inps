@@ -2,10 +2,16 @@
     "/dist/js/vendor.js": "/dist/js/vendor.js",
     "/dist/js/app.js": "/dist/js/app.js",
     "/dist/css/inps.css": "/dist/css/inps.css",
+    "/dist/js/riepilogo.js": "/dist/js/riepilogo.js",
     "/dist/js/manifest.js": "/dist/js/manifest.js",
     "/dist/js/inps.js": "/dist/js/inps.js",
     "/dist/js/inps.min.js": "/dist/js/inps.min.js",
-    "/dist/css/inps.min.css": "/dist/css/inps.min.css",
+    "/dist/js/riepilogo.min.js": "/dist/js/riepilogo.min.js",
+    "/wp-content/themes/cineteca-inail/js/manifest.js": "/wp-content/themes/cineteca-inail/js/manifest.js",
+    "/wp-content/themes/cineteca-inail/js/vendor.js": "/wp-content/themes/cineteca-inail/js/vendor.js",
+    "/wp-content/themes/cineteca-inail/js/app.js": "/wp-content/themes/cineteca-inail/js/app.js",
     "/wp-content/themes/cineteca-inail/js/inps.min.js": "/wp-content/themes/cineteca-inail/js/inps.min.js",
+    "/wp-content/themes/cineteca-inail/js/riepilogo.min.js": "/wp-content/themes/cineteca-inail/js/riepilogo.min.js",
+    "/dist/css/inps.min.css": "/dist/css/inps.min.css",
     "/wp-content/themes/cineteca-inail/css/inps.min.css": "/wp-content/themes/cineteca-inail/css/inps.min.css"
 }

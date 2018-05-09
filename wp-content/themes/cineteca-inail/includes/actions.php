@@ -122,9 +122,13 @@ function cineteca_enqueue_scripts()
 
     /* Register Scripts */
     wp_register_script( 'main', JS_DIR.'inps.min.js' );
+    // wp_register_script( 'manifest', JS_DIR.'manifest.js' );
+    // wp_register_script( 'vendor', JS_DIR.'vendor.js' );
 
     /* Enqueue Scripts */
     wp_enqueue_script( 'main' );
+    // wp_enqueue_script( 'manifest' );
+    // wp_enqueue_script( 'vendor' );
 
     // wp_register_script('jquery', JS_DIR.'jquery-1.11.1.min.js', false, VERSION, true);
     // wp_register_script('bootstrap', JS_DIR.'bootstrap.min.js', array('jquery'), VERSION, true);
@@ -132,6 +136,9 @@ function cineteca_enqueue_scripts()
     wp_register_script('cineteca.localstorage', JS_DIR.'cineteca.localstorage.'.$min.'js', array('jquery'), VERSION, true);
     wp_register_script('cineteca.rassegna', JS_DIR.'cineteca.rassegna.'.$min.'js', array('jquery'), VERSION, true);
     wp_register_script('cineteca.riepilogo', JS_DIR.'cineteca.riepilogo.'.$min.'js', array('jquery'), VERSION, true);
+
+    // wp_register_script( 'riepilogo', JS_DIR.'riepilogo.min.js', array('jquery') );
+
 
     // wp_enqueue_script('jquery');
     // wp_enqueue_script('bootstrap');
@@ -145,6 +152,9 @@ function cineteca_enqueue_scripts()
     }
 
     if (is_page_template('templates/template-la-mia-rassegna-riepilogo.php')) {
+        // wp_enqueue_script('riepilogo');
+        // wp_localize_script('riepilogo', 'bb_ajax_handler', array( 'ajaxurl' => admin_url('admin-ajax.php'), 'userid' => $current_user->ID ));
+
         wp_enqueue_script('cineteca.riepilogo');
         wp_localize_script('cineteca.riepilogo', 'bb_ajax_handler', array( 'ajaxurl' => admin_url('admin-ajax.php'), 'userid' => $current_user->ID ));
     }
