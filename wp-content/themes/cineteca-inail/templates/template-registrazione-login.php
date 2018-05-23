@@ -26,7 +26,7 @@
 							</div>
 							<div class="col-md-6 bb-login">
 								<h2 class="py-3">Hai gi&agrave; un account?</h2>
-								<form class="" action="wp-login.php" method="post">
+								<form class="" action="/wp-login.php" method="post">
 									<div class="form-group">
 										<label for="bb-user_login">Nome utente</label>
 										<input type="text" name="log" id="bb-user_login" class="input form-control" value="" size="20">

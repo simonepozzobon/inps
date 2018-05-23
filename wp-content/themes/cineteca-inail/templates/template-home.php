@@ -9,11 +9,11 @@
 		<div class="row">
 			<div class="col-md-8">
 				<!-- Parte Centrale -->
-				<!-- <div class="row pt-3">
-					<div class="col">
+				<div class="row pb-3">
+					<div class="col-12">
 						<?php if ( function_exists( 'easingslider' ) ) { easingslider( 99 ); } ?>
 					</div>
-				</div> -->
+				</div>
 				<div class="row">
 					<div class="col">
 						<div class="row bb-home-sect-title">
